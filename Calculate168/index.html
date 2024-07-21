@@ -37,8 +37,6 @@
     </style>
   </head>
   <body>
-    <h2 id="totalHours">Total Hours: 0</h2>
-
     <div>
       <label for="categoryInput">Category:</label>
       <input type="text" id="categoryInput" placeholder="Enter category" />
@@ -49,6 +47,7 @@
     </div>
     <button onclick="addCategory()">Submit</button>
 
+    <h2 id="totalHours">Total Hours: 0 of 168</h2>
     <div class="meter">
       <span id="fillMeter" style="width: 0%"></span>
     </div>
@@ -145,7 +144,9 @@
           roundProps: 'innerHTML',
           onUpdate: function () {
             totalHoursElement.innerHTML =
-              'Total Hours: ' + Math.round(this.targets()[0].innerHTML);
+              'Total Hours: ' +
+              Math.round(this.targets()[0].innerHTML) +
+              ' of 168';
           }
         });
 
