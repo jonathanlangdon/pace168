@@ -68,7 +68,7 @@
         Add Category
       </button>
 
-      <h2 id="totalHours" class="mt-4">Total Hours: 0 of 168</h2>
+      <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
       <div class="meter">
         <span id="fillMeter" style="width: 0%"></span>
       </div>
@@ -177,10 +177,8 @@
         innerHTML: newTotalHours,
         roundProps: 'innerHTML',
         onUpdate: function () {
-          totalHoursElement.innerHTML =
-            'Total Hours: ' +
-            Math.round(this.targets()[0].innerHTML) +
-            ' of 168';
+          totalHoursElement.innerText =
+            Math.round(this.targets()[0].innerText) + '/168 Hours Used';
         }
       });
 
