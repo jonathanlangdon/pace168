@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GSAP Example</title>
+    <title>Your 168 Hours Calculator</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,6 +11,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <style>
+      .sticky-header {
+        position: -webkit-sticky; /* For Safari */
+        position: sticky;
+        top: 0;
+        background-color: white;
+        z-index: 1000;
+        padding: 10px 0;
+      }
       table {
         width: 50%;
         margin-top: 20px;
@@ -18,7 +26,7 @@
       }
       th,
       td {
-        padding: 10px;
+        padding: 5px;
         text-align: left;
       }
       .meter {
@@ -89,8 +97,407 @@
   </head>
   <body>
     <div class="container mt-5">
+      <div class="sticky-header">
+        <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
+        <div class="meter">
+          <span id="fillMeter" style="width: 0%"></span>
+        </div>
+      </div>
+
+      <table id="categoryTable" class="table table-striped mt-4">
+        <thead class="thead-dark">
+          <tr>
+            <th>Time Use</th>
+            <th>Hours/Week</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Work</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Sleep</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Children</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Spouse</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Personal care</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Exercise</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Reading</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Social media</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Relatives</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Care for loved one</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Meditation</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Service</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Hobbies</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Entertainment (TV, games, concerts, etc.)</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Religious services</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Travel</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Preparing meals, eating</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Time with friends</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Vacation/Get-a-way</td>
+            <td>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Hours"
+                min="0"
+                onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))"
+              />
+            </td>
+            <td>
+              <button class="btn btn-success" onclick="saveRow(this)">
+                Save
+              </button>
+              <span class="delete-btn ml-2" onclick="deleteRow(this)"
+                >&#10006;</span
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="form-group">
-        <label for="categoryInput">Time Category:</label>
+        <label for="categoryInput">Add new Category:</label>
         <input
           type="text"
           id="categoryInput"
@@ -121,22 +528,6 @@
       <button onclick="addCategory()" class="btn btn-primary">
         Add Category
       </button>
-
-      <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
-      <div class="meter">
-        <span id="fillMeter" style="width: 0%"></span>
-      </div>
-
-      <table id="categoryTable" class="table table-striped mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th>Time Use</th>
-            <th>Hours/Week</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
     </div>
 
     <script>
@@ -180,6 +571,7 @@
 
           categoryCell.textContent = category;
           hoursCell.textContent = hoursPerWeek;
+          hoursCell.setAttribute('saved-hours', hoursPerWeek);
           actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
                                   <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
 
@@ -192,45 +584,35 @@
         }
       }
 
-      function editRow(button) {
-        const row = button.parentNode.parentNode;
-        const categoryCell = row.cells[0];
-        const hoursCell = row.cells[1];
-
-        const category = categoryCell.textContent;
-        const hours = parseFloat(hoursCell.textContent);
-
-        categoryCell.innerHTML = `<input type="text" class="form-control" value="${category}">`;
-        hoursCell.innerHTML = `<input type="number" class="form-control" value="${hours}" min="0">`;
-        button.textContent = 'Save';
-        button.setAttribute('data-old-hours', hours);
-        button.onclick = function () {
-          saveRow(this);
-        };
-      }
-
       function saveRow(button) {
         const row = button.parentNode.parentNode;
-        const categoryCell = row.cells[0];
-        const hoursCell = row.cells[1];
+        const inputField = row.cells[1].querySelector('input');
+        const newHours = parseFloat(inputField.value);
 
-        const newCategory = categoryCell.firstChild.value;
-        const newHours = parseFloat(hoursCell.firstChild.value);
-        const oldHours = parseFloat(button.getAttribute('data-old-hours'));
-
-        if (newCategory && !isNaN(newHours)) {
-          totalHours -= oldHours;
-          totalHours += newHours;
-
-          categoryCell.textContent = newCategory;
-          hoursCell.textContent = newHours;
-          button.textContent = 'Edit';
+        if (!isNaN(newHours)) {
+          totalHours -=
+            parseFloat(row.cells[1].getAttribute('saved-hours')) || 0;
+          row.cells[1].innerHTML = newHours;
+          row.cells[1].setAttribute('saved-hours', newHours);
+          button.innerHTML = 'Edit';
+          button.className = 'btn btn-warning';
           button.onclick = function () {
             editRow(this);
           };
-
+          totalHours += newHours;
           updateTotalHours(totalHours);
         }
+      }
+
+      function editRow(button) {
+        const row = button.parentNode.parentNode;
+        const hours = parseFloat(row.cells[1].innerHTML);
+        row.cells[1].innerHTML = `<input type="number" class="form-control" value="${hours}" min="0" onblur="saveRow(this.parentNode.parentNode.cells[2].querySelector('button'))">`;
+        button.innerHTML = 'Save';
+        button.className = 'btn btn-success';
+        button.onclick = function () {
+          saveRow(this);
+        };
       }
 
       function deleteRow(button) {
