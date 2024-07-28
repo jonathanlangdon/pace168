@@ -97,12 +97,6 @@
         color: red;
       }
 
-      .edit-btn {
-        display: inline-block;
-        padding: 0.25rem 0.5rem;
-        font-size: 0.875rem;
-      }
-
       @media (max-width: 780px) {
         .container {
           padding: 0 1rem;
@@ -169,11 +163,6 @@
 
         .meter span {
           border-radius: 15px 0 0 15px;
-        }
-
-        .edit-btn {
-          padding: 0.1rem 0.3rem;
-          font-size: 1rem;
         }
       }
     </style>
@@ -281,7 +270,7 @@
           } else {
             hoursCell.textContent = item.hours;
             hoursCell.setAttribute('saved-hours', item.hours);
-            actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>  <button class="btn btn-warning" onclick="editRow(this)">Edit</button>`;
+            actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
           }
 
           // Update total hours if item.hours is not null
@@ -331,6 +320,11 @@
           hoursCell.textContent = hoursPerWeek;
           hoursCell.setAttribute('saved-hours', hoursPerWeek);
 
+          // Add onclick event to hours cell to enable editing
+          hoursCell.onclick = function () {
+            editRow(this);
+          };
+
           const deleteButton = document.createElement('span');
           deleteButton.className = 'delete-btn ml-2';
           deleteButton.innerHTML = '&#10006;';
@@ -338,18 +332,7 @@
             deleteRow(deleteButton);
           };
 
-          const editButton = document.createElement('button');
-          editButton.className = 'btn btn-warning edit-btn ml-2';
-          editButton.innerHTML = 'Edit';
-          hoursCell.onclick = function () {
-            editRow(editButton);
-          };
-          editButton.onclick = function () {
-            editRow(editButton);
-          };
-
           actionCell.appendChild(deleteButton);
-          actionCell.appendChild(editButton);
 
           totalHours += hoursPerWeek;
           updateTotalHours(totalHours);
@@ -371,29 +354,17 @@
           totalHours += newHours;
           updateTotalHours(totalHours);
 
-          // Add an edit button after the delete button
-          const deleteButton = row.cells[2].querySelector('.delete-btn');
-          const editButton = document.createElement('button');
-          editButton.className = 'btn btn-warning edit-btn ml-2';
-          editButton.innerHTML = 'Edit';
+          // Re-enable editing on cell click
           row.cells[1].onclick = function () {
-            editRow(editButton);
+            editRow(this);
           };
-          editButton.onclick = function () {
-            editRow(editButton);
-          };
-          deleteButton.parentNode.insertBefore(
-            editButton,
-            deleteButton.nextSibling
-          );
         }
       }
 
-      function editRow(button) {
-        const row = button.parentNode.parentNode;
-        const hours = parseFloat(row.cells[1].innerHTML);
-        row.cells[1].innerHTML = `<input type="number" class="form-control" value="${hours}" min="0" onblur="saveRow(this)">`;
-        button.remove(); // Remove the edit button when editing starts
+      function editRow(cell) {
+        const hours = parseFloat(cell.innerHTML);
+        cell.innerHTML = `<input type="number" class="form-control" value="${hours}" min="0" onblur="saveRow(this)">`;
+        cell.onclick = null; // Remove the onclick to prevent further edits while editing
       }
 
       function deleteRow(button) {
