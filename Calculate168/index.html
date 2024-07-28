@@ -249,16 +249,19 @@
           hoursCell.textContent = hoursPerWeek;
           hoursCell.setAttribute('saved-hours', hoursPerWeek);
           actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
-                                  <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
+                            <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
+
+          // Fixing the issue with the onclick event
+          hoursCell.onclick = () => editRow(actionCell.querySelector('button'));
 
           totalHours += hoursPerWeek;
-
           updateTotalHours(totalHours);
 
           document.getElementById('categoryInput').value = '';
           document.getElementById('hoursInput').value = '';
         }
       }
+
       function saveRow(inputField) {
         const row = inputField.parentNode.parentNode;
         const newHours = parseFloat(inputField.value);
