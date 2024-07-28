@@ -194,13 +194,13 @@
           categoryCell.textContent = item.category;
           if (item.hours === null) {
             hoursCell.innerHTML = `<input type="number" class="form-control" placeholder="Hours" min="0" onblur="saveRow(this)">`;
+            actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
           } else {
             hoursCell.textContent = item.hours;
             hoursCell.setAttribute('saved-hours', item.hours);
+            actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
+            <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
           }
-
-          actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
-                                <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
 
           // Update total hours if item.hours is not null
           if (item.hours !== null) {
