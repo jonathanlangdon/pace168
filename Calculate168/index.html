@@ -95,7 +95,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="createInitialTable()">
     <div class="container mt-5">
       <div class="sticky-header">
         <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
@@ -113,329 +113,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Work</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Sleep</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Children</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Spouse</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Personal care</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Exercise</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Reading</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Social media</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Relatives</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Care for loved one</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Meditation</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Service</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Hobbies</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Entertainment (TV, games, concerts, etc.)</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Religious services</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Travel</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Preparing meals, eating</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Time with friends</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
-          <tr>
-            <td>Vacation/Get-a-way</td>
-            <td>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Hours"
-                min="0"
-                onblur="saveRow(this)"
-              />
-            </td>
-            <td>
-              <span class="delete-btn ml-2" onclick="deleteRow(this)"
-                >&#10006;</span
-              >
-            </td>
-          </tr>
+          <!-- Table rows will be populated by JavaScript -->
         </tbody>
       </table>
 
@@ -477,6 +155,61 @@
       let totalHours = 0;
       const maxHours = 168;
       let isWeekly = true;
+
+      const defaultTableItems = [
+        { category: 'Work', hours: null },
+        { category: 'Sleep', hours: null },
+        { category: 'Children', hours: null },
+        { category: 'Spouse', hours: null },
+        { category: 'Personal care', hours: null },
+        { category: 'Exercise', hours: null },
+        { category: 'Reading', hours: null },
+        { category: 'Social media', hours: null },
+        { category: 'Relatives', hours: null },
+        { category: 'Care for loved one', hours: null },
+        { category: 'Meditation', hours: null },
+        { category: 'Service', hours: null },
+        { category: 'Hobbies', hours: null },
+        { category: 'Entertainment (TV, games, concerts, etc.)', hours: null },
+        { category: 'Religious services', hours: null },
+        { category: 'Travel', hours: null },
+        { category: 'Preparing meals, eating', hours: null },
+        { category: 'Time with friends', hours: null },
+        { category: 'Vacation/Get-a-way', hours: null }
+      ];
+
+      function createInitialTable() {
+        const tableBody = document.querySelector('#categoryTable tbody');
+
+        // Step 4: Remove existing rows
+        tableBody.innerHTML = '';
+
+        // Step 5: Add rows based on defaultTableItems
+        defaultTableItems.forEach(item => {
+          const newRow = tableBody.insertRow();
+          const categoryCell = newRow.insertCell(0);
+          const hoursCell = newRow.insertCell(1);
+          const actionCell = newRow.insertCell(2);
+
+          categoryCell.textContent = item.category;
+          if (item.hours === null) {
+            hoursCell.innerHTML = `<input type="number" class="form-control" placeholder="Hours" min="0" onblur="saveRow(this)">`;
+          } else {
+            hoursCell.textContent = item.hours;
+            hoursCell.setAttribute('saved-hours', item.hours);
+          }
+
+          actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
+                                <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
+
+          // Update total hours if item.hours is not null
+          if (item.hours !== null) {
+            totalHours += parseFloat(item.hours);
+          }
+        });
+
+        updateTotalHours(totalHours);
+      }
 
       function toggleInput() {
         const toggleWeekly = document.getElementById('toggleWeekly');
