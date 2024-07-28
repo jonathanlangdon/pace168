@@ -200,7 +200,7 @@
       </table>
 
       <div class="form-group">
-        <label for="categoryInput">Add new Category:</label>
+        <label for="categoryInput">Add New Category:</label>
         <input
           type="text"
           id="categoryInput"
@@ -396,13 +396,16 @@
       }
 
       function deleteRow(button) {
-        const row = button.parentNode.parentNode;
-        const hours = parseFloat(row.cells[1].textContent);
+        if (confirm('Are you sure you want to delete this category?')) {
+          const row = button.parentNode.parentNode;
+          const hours = parseFloat(row.cells[1].textContent);
 
-        totalHours -= hours;
-        row.remove();
-
-        updateTotalHours(totalHours);
+          if (!isNaN(hours) || hours > 0) {
+            totalHours -= hours;
+            updateTotalHours(totalHours);
+          }
+          row.remove();
+        }
       }
 
       function updateTotalHours(newTotalHours) {
