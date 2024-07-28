@@ -47,6 +47,15 @@
         margin-bottom: 1rem;
       }
 
+      .input-group {
+        display: flex;
+        align-items: center;
+      }
+
+      .hour-input {
+        flex: 1;
+      }
+
       .toggle-container {
         display: flex;
         align-items: center;
@@ -88,7 +97,13 @@
         color: red;
       }
 
-      @media (max-width: 576px) {
+      .edit-btn {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 780px) {
         .container {
           padding: 0 1rem;
         }
@@ -102,7 +117,7 @@
         }
 
         .form-control {
-          font-size: 0.9rem;
+          font-size: 0.7rem;
         }
 
         .btn {
@@ -115,12 +130,13 @@
         }
 
         .table tbody td {
-          font-size: 0.8rem;
+          font-size: 0.7rem;
         }
 
         .input-group {
           display: flex;
           flex-wrap: nowrap;
+          align-items: center;
         }
 
         .toggle-container {
@@ -152,6 +168,11 @@
 
         .meter span {
           border-radius: 15px 0 0 15px;
+        }
+
+        .edit-btn {
+          padding: 0.1rem 0.3rem;
+          font-size: 0.75rem;
         }
       }
     </style>
@@ -259,8 +280,7 @@
           } else {
             hoursCell.textContent = item.hours;
             hoursCell.setAttribute('saved-hours', item.hours);
-            actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
-            <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
+            actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>  <button class="btn btn-warning" onclick="editRow(this)">Edit</button>`;
           }
 
           // Update total hours if item.hours is not null
@@ -309,10 +329,26 @@
           categoryCell.textContent = category;
           hoursCell.textContent = hoursPerWeek;
           hoursCell.setAttribute('saved-hours', hoursPerWeek);
-          actionCell.innerHTML = `<button class="btn btn-warning" onclick="editRow(this)">Edit</button>
-                            <span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
 
-          hoursCell.onclick = () => editRow(actionCell.querySelector('button'));
+          const deleteButton = document.createElement('span');
+          deleteButton.className = 'delete-btn ml-2';
+          deleteButton.innerHTML = '&#10006;';
+          deleteButton.onclick = function () {
+            deleteRow(deleteButton);
+          };
+
+          const editButton = document.createElement('button');
+          editButton.className = 'btn btn-warning edit-btn ml-2';
+          editButton.innerHTML = 'Edit';
+          hoursCell.onclick = function () {
+            editRow(editButton);
+          };
+          editButton.onclick = function () {
+            editRow(editButton);
+          };
+
+          actionCell.appendChild(deleteButton);
+          actionCell.appendChild(editButton);
 
           totalHours += hoursPerWeek;
           updateTotalHours(totalHours);
@@ -337,7 +373,7 @@
           // Add an edit button after the delete button
           const deleteButton = row.cells[2].querySelector('.delete-btn');
           const editButton = document.createElement('button');
-          editButton.className = 'btn btn-warning ml-2';
+          editButton.className = 'btn btn-warning edit-btn ml-2';
           editButton.innerHTML = 'Edit';
           row.cells[1].onclick = function () {
             editRow(editButton);
