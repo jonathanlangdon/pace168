@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <style>
@@ -151,6 +152,7 @@
           flex: 1;
           text-align: center;
           padding: 0.5rem;
+          font-size: 0.75rem;
         }
 
         .toggle-slider {
@@ -177,60 +179,102 @@
       }
     </style>
   </head>
-  <body onload="createInitialTable()">
-    <div class="container mt-5">
-      <div class="sticky-header">
-        <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
-        <div class="meter">
-          <span id="fillMeter" style="width: 0%"></span>
-        </div>
-      </div>
-
-      <table id="categoryTable" class="table table-striped mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th>Time Use</th>
-            <th>Hours/Week</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Table rows will be populated by JavaScript -->
-        </tbody>
-      </table>
-
-      <div class="form-group">
-        <label for="categoryInput">Add New Category:</label>
-        <input
-          type="text"
-          id="categoryInput"
-          class="form-control"
-          placeholder="Enter category"
-        />
-      </div>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="hour-input">
-            <input
-              type="number"
-              id="hoursInput"
-              class="form-control"
-              placeholder="Enter hours"
-              min="0"
-            />
-          </div>
-          <div class="toggle-container" onclick="toggleInput()">
-            <div class="toggle-option selected" id="toggleWeekly">
-              Hours per Week
-            </div>
-            <div class="toggle-option" id="toggleDaily">Hours per Day</div>
-            <div class="toggle-slider"></div>
-          </div>
-        </div>
-      </div>
-      <button onclick="addCategory()" class="btn btn-primary">
-        Add Category
+  <body>
+    <!-- Launch Button -->
+    <div class="container text-center mt-5">
+      <button
+        class="btn btn-primary btn-lg"
+        data-toggle="modal"
+        data-target="#calculatorModal"
+      >
+        Launch Calculator
       </button>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="calculatorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="calculatorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="calculatorModalLabel">
+              Your 168 Hours Calculator
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container mt-5">
+              <div class="sticky-header">
+                <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
+                <div class="meter">
+                  <span id="fillMeter" style="width: 0%"></span>
+                </div>
+              </div>
+
+              <table id="categoryTable" class="table table-striped mt-4">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Time Use</th>
+                    <th>Hours/Week</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Table rows will be populated by JavaScript -->
+                </tbody>
+              </table>
+
+              <div class="form-group">
+                <label for="categoryInput">Add New Category:</label>
+                <input
+                  type="text"
+                  id="categoryInput"
+                  class="form-control"
+                  placeholder="Enter category"
+                />
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="hour-input">
+                    <input
+                      type="number"
+                      id="hoursInput"
+                      class="form-control"
+                      placeholder="Enter hours"
+                      min="0"
+                    />
+                  </div>
+                  <div class="toggle-container" onclick="toggleInput()">
+                    <div class="toggle-option selected" id="toggleWeekly">
+                      Hours per Week
+                    </div>
+                    <div class="toggle-option" id="toggleDaily">
+                      Hours per Day
+                    </div>
+                    <div class="toggle-slider"></div>
+                  </div>
+                </div>
+              </div>
+              <button onclick="addCategory()" class="btn btn-primary">
+                Add Category
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -262,11 +306,8 @@
 
       function createInitialTable() {
         const tableBody = document.querySelector('#categoryTable tbody');
-
-        // Step 4: Remove existing rows
         tableBody.innerHTML = '';
 
-        // Step 5: Add rows based on defaultTableItems
         defaultTableItems.forEach(item => {
           const newRow = tableBody.insertRow();
           const categoryCell = newRow.insertCell(0);
@@ -400,11 +441,10 @@
           const row = button.parentNode.parentNode;
           const hours = parseFloat(row.cells[1].textContent);
 
-          if (!isNaN(hours) || hours > 0) {
-            totalHours -= hours;
-            updateTotalHours(totalHours);
-          }
+          totalHours -= hours;
           row.remove();
+
+          updateTotalHours(totalHours);
         }
       }
 
@@ -427,6 +467,11 @@
         fillMeter.style.backgroundColor =
           newTotalHours > maxHours ? 'red' : 'green';
       }
+
+      // Initialize the table on modal show
+      $('#calculatorModal').on('shown.bs.modal', function () {
+        createInitialTable();
+      });
     </script>
   </body>
 </html>
