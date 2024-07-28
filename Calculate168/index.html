@@ -253,16 +253,12 @@
       function createInitialTable() {
         const tableBody = document.querySelector('#categoryTable tbody');
 
-        // Step 4: Remove existing rows
         tableBody.innerHTML = '';
-
-        // Step 5: Add rows based on defaultTableItems
         defaultTableItems.forEach(item => {
           const newRow = tableBody.insertRow();
           const categoryCell = newRow.insertCell(0);
           const hoursCell = newRow.insertCell(1);
           const actionCell = newRow.insertCell(2);
-
           categoryCell.textContent = item.category;
           if (item.hours === null) {
             hoursCell.innerHTML = `<input type="number" class="form-control" placeholder="Hours" min="0" onblur="saveRow(this)">`;
@@ -372,7 +368,7 @@
           const row = button.parentNode.parentNode;
           const hours = parseFloat(row.cells[1].textContent);
 
-          if (!isNaN(hours) || hours > 0) {
+          if (!isNaN(hours) && hours > 0) {
             totalHours -= hours;
             updateTotalHours(totalHours);
           }
