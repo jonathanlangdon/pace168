@@ -45,7 +45,12 @@
         width: 100%;
       }
 
+      .float-right {
+        float: right;
+      }
+
       .form-group {
+        margin-top: 20px;
         margin-bottom: 1rem;
       }
 
@@ -109,6 +114,7 @@
         }
 
         .form-group label {
+          margin-top: 10px;
           font-size: 1rem;
         }
 
@@ -191,6 +197,12 @@
         </tbody>
       </table>
 
+      <div class="text-right">
+        <button onclick="saveCategories()" class="btn btn-secondary mt-3">
+          Save Categories to Device
+        </button>
+      </div>
+
       <div class="form-group">
         <label for="categoryInput">Add New Category:</label>
         <input
@@ -224,6 +236,7 @@
         Add Category
       </button>
     </div>
+
     <!-- Delete Confirmation Modal -->
     <div
       class="modal fade"
@@ -271,6 +284,42 @@
       </div>
     </div>
 
+    <!-- Success Modal -->
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="successModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">Success</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">Categories saved successfully!</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       let totalHours = 0;
       const maxHours = 168;
@@ -300,9 +349,14 @@
 
       function createInitialTable() {
         const tableBody = document.querySelector('#categoryTable tbody');
-
         tableBody.innerHTML = '';
-        defaultTableItems.forEach(item => {
+
+        const savedCategories = localStorage.getItem('timeCategories168');
+        const categories = savedCategories
+          ? JSON.parse(savedCategories)
+          : defaultTableItems;
+
+        categories.forEach(item => {
           const newRow = tableBody.insertRow();
           const categoryCell = newRow.insertCell(0);
           const hoursCell = newRow.insertCell(1);
@@ -436,6 +490,27 @@
         fillMeter.style.width = fillPercentage + '%';
         fillMeter.style.backgroundColor =
           newTotalHours > maxHours ? 'red' : 'green';
+      }
+
+      function saveCategories() {
+        const tableBody = document.querySelector('#categoryTable tbody');
+        const rows = tableBody.rows;
+        const categories = [];
+
+        for (let i = 0; i < rows.length; i++) {
+          const category = rows[i].cells[0].textContent;
+          const hours = parseFloat(
+            rows[i].cells[1].getAttribute('saved-hours')
+          );
+
+          categories.push({
+            category: category,
+            hours: isNaN(hours) ? null : hours
+          });
+        }
+
+        localStorage.setItem('timeCategories168', JSON.stringify(categories));
+        $('#successModal').modal('show'); // Show the success modal
       }
 
       document
