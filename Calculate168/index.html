@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -203,6 +205,9 @@
         </button>
         <button onclick="restoreDefaults()" class="btn btn-warning mt-3">
           Restore Defaults
+        </button>
+        <button onclick="downloadPDF()" class="btn btn-success mt-3">
+          Download PDF
         </button>
       </div>
 
@@ -574,6 +579,36 @@
 
       function restoreDefaults() {
         $('#restoreDefaultsModal').modal('show');
+      }
+
+      function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Add title
+        doc.setFontSize(18);
+        doc.text('Your 168 Hours Calculator', 14, 20);
+
+        // Add total hours
+        doc.setFontSize(14);
+        doc.text(`Total Hours: ${totalHours}/168`, 14, 30);
+
+        // Add table
+        const table = document.getElementById('categoryTable');
+        const tableData = [];
+        for (let i = 1; i < table.rows.length; i++) {
+          const row = table.rows[i];
+          tableData.push([row.cells[0].textContent, row.cells[1].textContent]);
+        }
+
+        doc.autoTable({
+          startY: 40,
+          head: [['Category', 'Hours/Week']],
+          body: tableData
+        });
+
+        // Save the PDF
+        doc.save('168_hours_calculator.pdf');
       }
 
       // Event Listeners
