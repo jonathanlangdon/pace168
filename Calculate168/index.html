@@ -14,6 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.20/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -179,29 +181,31 @@
   </head>
   <body onload="createInitialTable()">
     <div class="container mt-5">
-      <div class="sticky-header">
-        <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
-        <div class="meter">
-          <span id="fillMeter" style="width: 0%"></span>
+      <div id="categoryTableContainer">
+        <div class="sticky-header">
+          <h2 id="totalHours" class="mt-4">0 Hours used of 168</h2>
+          <div class="meter">
+            <span id="fillMeter" style="width: 0%"></span>
+          </div>
         </div>
-      </div>
 
-      <table id="categoryTable" class="table table-striped mt-4">
-        <thead class="thead-dark">
-          <tr>
-            <th>Time Use</th>
-            <th>Hours/Week</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Table rows will be populated by JavaScript -->
-        </tbody>
-      </table>
+        <table id="categoryTable" class="table table-striped mt-4">
+          <thead class="thead-dark">
+            <tr>
+              <th>Time Use</th>
+              <th>Hours/Week</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table rows will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
 
       <div class="text-right">
         <button onclick="saveCategories()" class="btn btn-primary mt-3">
-          Save Categories to Device
+          Save
         </button>
         <button onclick="restoreDefaults()" class="btn btn-warning mt-3">
           Restore Defaults
@@ -580,35 +584,58 @@
       function restoreDefaults() {
         $('#restoreDefaultsModal').modal('show');
       }
+      function isSafari() {
+        return (
+          /Safari/.test(navigator.userAgent) &&
+          /Apple Computer/.test(navigator.vendor)
+        );
+      }
 
       function downloadPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        const element = document.getElementById('categoryTableContainer');
 
-        // Add title
-        doc.setFontSize(18);
-        doc.text('Your 168 Hours Calculator', 14, 20);
+        if (isSafari()) {
+          const opt = {
+            margin: 0.5,
+            filename: '168_hours_calculator.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+          };
 
-        // Add total hours
-        doc.setFontSize(14);
-        doc.text(`Total Hours: ${totalHours}/168`, 14, 30);
+          html2pdf().from(element).set(opt).save();
+        } else {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
 
-        // Add table
-        const table = document.getElementById('categoryTable');
-        const tableData = [];
-        for (let i = 1; i < table.rows.length; i++) {
-          const row = table.rows[i];
-          tableData.push([row.cells[0].textContent, row.cells[1].textContent]);
+          // Add title
+          doc.setFontSize(18);
+          doc.text('Your 168 Hours Calculator', 14, 20);
+
+          // Add total hours
+          doc.setFontSize(14);
+          doc.text(`Total Hours: ${totalHours}/168`, 14, 30);
+
+          // Add table
+          const table = document.getElementById('categoryTable');
+          const tableData = [];
+          for (let i = 1; i < table.rows.length; i++) {
+            const row = table.rows[i];
+            tableData.push([
+              row.cells[0].textContent,
+              row.cells[1].textContent
+            ]);
+          }
+
+          doc.autoTable({
+            startY: 40,
+            head: [['Category', 'Hours/Week']],
+            body: tableData
+          });
+
+          // Save the PDF
+          doc.save('168_hours_calculator.pdf');
         }
-
-        doc.autoTable({
-          startY: 40,
-          head: [['Category', 'Hours/Week']],
-          body: tableData
-        });
-
-        // Save the PDF
-        doc.save('168_hours_calculator.pdf');
       }
 
       // Event Listeners
