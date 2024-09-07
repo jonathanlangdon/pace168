@@ -1,4 +1,13 @@
 <?php
+    $secret = 'Heckyeahwewantssecrets385';
+    $signature = 'sha256=' . hash_hmac('sha256', file_get_contents('php://input'), $secret);
+
+    // Verify the request signature
+    if (!hash_equals($signature, $_SERVER['HTTP_X_HUB_SIGNATURE_256'])) {
+        http_response_code(403);
+        die('Invalid signature');
+    }
+
     // Define the path to your git repository
     $repoPath = '/home/yourusername/public_html/yourrepository';
 
