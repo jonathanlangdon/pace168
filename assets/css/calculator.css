@@ -6,7 +6,7 @@ body {
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 1000;
+  z-index: 99;
   padding: 1rem 0;
   text-align: center;
 }
