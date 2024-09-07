@@ -9,7 +9,7 @@
     }
 
     // Define the path to your git repository
-    $repoPath = '/home/yourusername/public_html/yourrepository';
+    $repoPath = '/home/newhulings/public_html/pace168.com';
 
     // Change directory to the repository
     chdir($repoPath);
