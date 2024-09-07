@@ -12,12 +12,22 @@
     $repoPath = '/home/newhulings/public_html/pace168.com';
 
     // Change directory to the repository
-    chdir($repoPath);
+    if (!chdir($repoPath)) {
+        error_log("Failed to change directory to $repoPath");
+        http_response_code(500);
+        die('Failed to change directory');
+    }
 
     // Pull the latest changes
-    exec('git pull 2>&1', $output, $return);
+    $command = 'git pull 2>&1';
+    exec($command, $output, $return);
 
     // Output the result for logging purposes
+    $logFile = '/path/to/logfile.log'; // Change this to your desired log file path
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Command: $command\n", FILE_APPEND);
+    file_put_contents($logFile, "Output: " . implode("\n", $output) . "\n", FILE_APPEND);
+    file_put_contents($logFile, "Return Code: $return\n", FILE_APPEND);
+
     if ($return === 0) {
         echo "Git Pull Successful: " . implode("\n", $output);
     } else {
