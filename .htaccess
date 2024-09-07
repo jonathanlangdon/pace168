@@ -23,3 +23,6 @@ Options -Indexes
 <FilesMatch "\.(jpg|png|css|js|html)$">
     Require all granted
 </FilesMatch>
+
+# In the .htaccess file in the public_html directory
+RedirectMatch 404 /\.git

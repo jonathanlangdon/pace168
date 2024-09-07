@@ -23,7 +23,7 @@
     exec($command, $output, $return);
 
     // Output the result for logging purposes
-    $logFile = '/path/to/logfile.log'; // Change this to your desired log file path
+    $logFile = '/home/newhulings/logs/gitPace168WebHookLog.log'; // Change this to your desired log file path
     file_put_contents($logFile, date('Y-m-d H:i:s') . " - Command: $command\n", FILE_APPEND);
     file_put_contents($logFile, "Output: " . implode("\n", $output) . "\n", FILE_APPEND);
     file_put_contents($logFile, "Return Code: $return\n", FILE_APPEND);
