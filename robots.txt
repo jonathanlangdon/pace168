@@ -1,0 +1,23 @@
+# Allow all bots to crawl the website
+User-agent: *
+Disallow: /includes/          # Disallow access to sensitive directories (if applicable)
+Disallow: /uploads/           # Disallow access to uploads directory (if used)
+Disallow: /cgi-bin/           # Standard practice to disallow cgi-bin if it exists
+Disallow: /php-scripts/       # Disallow access to any PHP scripts (if applicable)
+
+# Allow specific subdirectories to be indexed
+Allow: /assets/               # Allow access to images, CSS, JS
+Allow: /images/               # Allow images folder if it exists
+
+# Prevent search engines from indexing search results pages (if you have dynamic search)
+Disallow: /search/
+
+# Block bots from indexing any URL with parameters (if applicable)
+Disallow: /*?*
+
+# Disallow any duplicate pages (example: if you have paginated or filtered content)
+Disallow: /page/
+Disallow: /filter/
+
+# Sitemap location (if you have a sitemap)
+Sitemap: https://www.pace168.com/sitemap.xml
