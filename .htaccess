@@ -1,11 +1,7 @@
-# Disable directory browsing
-Options -Indexes
-
-# Disable server signature (hides server information)
-ServerSignature Off
+# Enable RewriteEngine
+RewriteEngine On
 
 # Redirect from non-www to www (pace168.com to www.pace168.com)
-RewriteEngine On
 RewriteCond %{HTTP_HOST} ^pace168\.com [NC]
 RewriteRule ^(.*)$ https://www.pace168.com/$1 [L,R=301]
 
@@ -13,10 +9,11 @@ RewriteRule ^(.*)$ https://www.pace168.com/$1 [L,R=301]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Deny access to sensitive files and directories (e.g., PHP webhooks, config files)
-<FilesMatch "\.(env|ini|log|sh|txt|json|md|yml|yaml|php)$">
-    Require all denied
-</FilesMatch>
+# Disable directory browsing
+Options -Indexes
+
+# Disable server signature (hides server information)
+ServerSignature Off
 
 # Protect .htaccess itself
 <Files ".htaccess">
@@ -36,16 +33,3 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     ExpiresByType application/x-javascript "access plus 1 month"
     ExpiresByType application/pdf "access plus 1 month"
 </IfModule>
-
-# Block access to the includes directory (if applicable for the webhook)
-<Directory "/path/to/includes">
-    Order Allow,Deny
-    Deny from all
-</Directory>
-
-# Block script execution in uploads folder (if needed)
-<Directory "/path/to/uploads">
-    SetHandler None
-    Options -ExecCGI
-    AddType text/plain .php .pl .cgi .py .asp .jsp .sh
-</Directory>
