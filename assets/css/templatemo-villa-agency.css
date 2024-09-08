@@ -818,6 +818,14 @@ Banner Style
   background-image: url(../images/banner-03.jpg);
 }
 
+.main-banner .item-4 {
+  background-image: url(../images/banner-04.jpg);
+}
+
+.main-banner .item-5 {
+  background-image: url(../images/banner-05.jpg);
+}
+
 .main-banner .item span.category {
   background-color: #fff;
   color: #1e1e1e;
@@ -835,13 +843,13 @@ Banner Style
 }
 
 .main-banner .item h2 {
-  font-size: 62px;
+  font-size: 48px;
   font-weight: 700;
   /* text-transform: uppercase; */
   color: #fff;
   /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000; */
-  line-height: 72px;
+  line-height: 55px;
   width: 50%;
   margin-bottom: 0px;
 }
