@@ -9,6 +9,7 @@ const defaultTableItems = [
   { category: 'Spouse', hours: null },
   { category: 'Driving (commute, taxiing)', hours: null },
   { category: 'Personal care', hours: null },
+  { category: 'Chores, Home Care', hours: null },
   { category: 'Exercise', hours: null },
   { category: 'Reading', hours: null },
   { category: 'Social media', hours: null },
