@@ -843,13 +843,13 @@ Banner Style
 }
 
 .main-banner .item h2 {
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 700;
   /* text-transform: uppercase; */
   color: #fff;
   /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000; */
-  line-height: 55px;
+  line-height: 52px;
   width: 50%;
   margin-bottom: 0px;
 }
