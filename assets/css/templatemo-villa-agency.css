@@ -295,6 +295,10 @@ body {
   flex: 1;
 }
 
+iframe {
+  height: 85vh;
+}
+
 /* 
 ---------------------------------------------
 Pre-loader Style
@@ -1790,6 +1794,10 @@ body {
 
   .main-container {
     display: block;
+  }
+
+  iframe {
+    height: 55vh;
   }
 
   .header-area .main-nav .logo h1 {
