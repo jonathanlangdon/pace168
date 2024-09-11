@@ -275,6 +275,16 @@ body {
   color: #fff;
 }
 
+.main-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.box1 {
+  flex: 1;
+}
+
 /* 
 ---------------------------------------------
 Pre-loader Style
@@ -1764,6 +1774,10 @@ body {
 }
 
 @media (max-width: 767px) {
+  .main-container {
+    flex-direction: column;
+  }
+
   .header-area .main-nav .logo h1 {
     line-height: 80px !important;
   }
