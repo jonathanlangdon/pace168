@@ -11,6 +11,12 @@ body {
   text-align: center;
 }
 
+.box2.sticky {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+}
+
 .meter {
   height: 20px;
   background: #e0e0df;
@@ -87,6 +93,11 @@ body {
 .delete-btn {
   cursor: pointer;
   color: red;
+}
+
+#categoryTableContainer {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 @media (max-width: 780px) {
