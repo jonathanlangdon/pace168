@@ -1787,12 +1787,6 @@ body {
   overflow-x: hidden;
 }
 
-@media (max-width: 500px) {
-  iframe {
-    height: 35vh;
-  }
-}
-
 @media (max-width: 767px) {
   .main-container {
     flex-direction: column;
