@@ -1777,6 +1777,39 @@ Contact Page Style
   background-color: #f35525;
 }
 
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+
+  /* Maintain 16:9 aspect ratio */
+  aspect-ratio: 16 / 9;
+
+  /* Ensure the wrapper doesn't exceed the viewport height */
+  max-height: calc(
+    100vh - 20px
+  ); /* Adjust 20px based on other elements like headers */
+
+  /* Responsive behavior */
+  overflow: hidden;
+
+  /* Optional: Center the iframe vertically if there's extra space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive iframe styling */
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
 /* 
 ---------------------------------------------
 Responsive Style
