@@ -1494,6 +1494,28 @@ Page Header Style
   color: #fff;
 }
 
+.image-container {
+  position: relative;
+  width: 100%; /* Adjust this to your desired width */
+}
+
+.image-container img {
+  /* width: 100%; Ensure the image covers the entire container
+  height: auto; */
+  max-height: 800px;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%; /* Center the text vertically */
+  left: 50%; /* Center the text horizontally */
+  transform: translate(-50%, -50%); /* Adjust position for perfect centering */
+  color: white; /* Change the text color */
+  font-size: 24px; /* Adjust the font size as needed */
+  padding: 10px; /* Optional: Add some padding to the text */
+  text-align: center;
+}
+
 /* 
 ---------------------------------------------
 Properties Style
@@ -1854,6 +1876,12 @@ body {
   }
   .header-area .main-nav .nav li:last-child {
     color: black;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 12px;
   }
 }
 
