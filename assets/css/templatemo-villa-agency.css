@@ -821,13 +821,23 @@ Header Style
 Banner Style
 --------------------------------------------- 
 */
-
+/* 
 .main-banner .item {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 220px 20% 320px 20%;
   margin-top: 0px;
+} */
+
+.main-banner {
+  height: calc(
+    100vh - 60px - 100px
+  ); /* 100vh minus header and footer heights */
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  position: relative;
 }
 
 .main-banner .item-1 {
@@ -1505,23 +1515,27 @@ Page Header Style
 
 .image-container {
   position: relative;
-  width: 100%; /* Adjust this to your desired width */
+  height: 100%; /* Adjust this to your desired width */
 }
+/* 
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 800px;
+} */
 
 .image-container img {
-  /* width: 100%; Ensure the image covers the entire container
-  height: auto; */
-  max-height: 800px;
+  /* width: 100%; */
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container without distortion */
 }
 
 .overlay-text {
   position: absolute;
-  top: 50%; /* Center the text vertically */
-  left: 50%; /* Center the text horizontally */
-  transform: translate(-50%, -50%); /* Adjust position for perfect centering */
-  color: white; /* Change the text color */
-  font-size: 24px; /* Adjust the font size as needed */
-  padding: 10px; /* Optional: Add some padding to the text */
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
   text-align: center;
 }
 
@@ -1885,12 +1899,6 @@ body {
   }
   .header-area .main-nav .nav li:last-child {
     color: black;
-  }
-  h3 {
-    font-size: 20px;
-  }
-  h5 {
-    font-size: 12px;
   }
 }
 
