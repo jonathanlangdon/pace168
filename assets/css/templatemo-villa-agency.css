@@ -1431,16 +1431,25 @@ Footer Style
 footer.footer-no-gap {
   margin-top: 0px;
 }
-
+/* 
 footer {
   margin-top: 150px;
   background-color: #1e1e1e;
   min-height: 100px;
+} */
+
+footer {
+  margin-top: 0;
+  background-color: #1e1e1e;
+  min-height: 50px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 footer p {
   text-align: center;
-  line-height: 100px;
+  line-height: 50px;
   color: #fff;
   font-size: 16px;
   font-weight: 400;
