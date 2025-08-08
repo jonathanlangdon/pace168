@@ -816,6 +816,10 @@ Header Style
   }
 }
 
+#copyright {
+  text-align: center;
+}
+
 /* 
 ---------------------------------------------
 Banner Style
@@ -1438,42 +1442,56 @@ Footer Style
 --------------------------------------------- 
 */
 
-footer.footer-no-gap {
-  margin-top: 0px;
-}
-/* 
-footer {
-  margin-top: 150px;
-  background-color: #1e1e1e;
-  min-height: 100px;
-} */
-
 footer {
   margin-top: 0;
   background-color: #1e1e1e;
-  min-height: 50px;
+  height: 50px; /* use fixed height to match min-height */
   position: fixed;
   bottom: 0;
   width: 100%;
 }
 
-footer p {
-  text-align: center;
-  line-height: 50px;
+footer .container {
+  display: flex;
+  justify-content: space-between; /* left, center, right */
+  align-items: center; /* vertical center */
+  height: 100%; /* so align-items centers relative to footer */
+  padding: 0 20px;
+}
+
+footer .footer-logo {
+  height: 40px;
+  width: auto;
+}
+
+footer #copyright {
   color: #fff;
   font-size: 16px;
   font-weight: 400;
+  text-align: center;
 }
 
-footer p a {
+footer #copyright p {
+  margin: 0; /* remove default p margins */
+  line-height: 1; /* prevent pushing vertically */
+}
+
+footer a {
   color: #fff;
   transition: all 0.3s;
-  position: relative;
-  z-index: 3;
 }
 
-footer p a:hover {
+footer a:hover {
   opacity: 0.75;
+}
+
+footer #copyright,
+footer #copyright p,
+footer #copyright * {
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
 }
 
 /* 
