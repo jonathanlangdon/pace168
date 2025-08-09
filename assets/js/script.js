@@ -1,9 +1,18 @@
-function appendFooter() {
-  const currentYear = new Date().getFullYear();
+(function () {
+  function appendFooter() {
+    var currentYear = new Date().getFullYear();
+    var p = document.createElement('p');
+    p.appendChild(document.createTextNode('©' + currentYear + ' Pace168.com'));
+    var target = document.getElementById('copyright');
+    if (target) {
+      target.appendChild(p);
+    }
+  }
 
-  const copyrightText = document.createElement('p');
-  copyrightText.innerText = `©${currentYear} Pace168.com`;
-  document.getElementById('copyright').appendChild(copyrightText);
-}
-
-appendFooter();
+  // Run safely even if script is in <head>
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', appendFooter);
+  } else {
+    appendFooter();
+  }
+})();

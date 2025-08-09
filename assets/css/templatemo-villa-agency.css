@@ -1449,6 +1449,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  padding: 10px;
 }
 
 footer .container {
@@ -2024,4 +2025,25 @@ body {
 
 .hulings-blue {
   color: #2d3192;
+}
+
+#pace-logo-link {
+}
+
+#pace-logo {
+  vertical-align: center;
+  text-align: center;
+  height: auto;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+#hulings-link {
+  text-align: center;
+  font-size: small;
+  font-style: italic;
+}
+
+#logo-area {
+  width: 185px;
 }
