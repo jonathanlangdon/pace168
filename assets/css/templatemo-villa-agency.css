@@ -498,17 +498,21 @@ Header Style
   display: inline-block;
 }
 
-.header-area .main-nav .logo h1 {
-  line-height: 100px;
-  font-size: 28px;
+/* Use a class for the logo styling, not a heading tag */
+.header-area .main-nav .logo-text {
+  /* Using rem for a scalable font size */
+  font-size: 1.75rem; /* ~28px */
   text-transform: uppercase;
   color: #1e1e1e;
   font-weight: 700;
   letter-spacing: 2px;
+  /* Line height can be a unitless value relative to font-size */
+  line-height: 1.25;
 }
 
-.background-header .main-nav .logo h1 {
-  line-height: 80px;
+/* Specific state for the logo when the header has a background */
+.background-header .main-nav .logo-text {
+  line-height: 1; /* A more direct value for the smaller header */
 }
 
 .header-area .main-nav ul.nav {
@@ -1551,7 +1555,7 @@ Page Header Style
 
 .overlay-text {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -2040,10 +2044,73 @@ body {
 
 #hulings-link {
   text-align: center;
-  font-size: small;
+  font-size: smaller;
   font-style: italic;
 }
 
 #logo-area {
-  width: 185px;
+  width: 165px;
+}
+
+@media (max-width: 500px) {
+  #pace-logo {
+    vertical-align: center;
+    text-align: center;
+    height: auto;
+    padding: 5px;
+    padding-bottom: 0px;
+  }
+
+  #hulings-link {
+    text-align: center;
+    font-size: xx-small;
+    font-style: italic;
+  }
+
+  #logo-area {
+    width: 150px;
+  }
+
+  /* .main-banner .image-container .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-10%, -70%);
+    color: white;
+    text-align: center;
+  } */
+
+  .main-banner .image-container {
+    position: relative;
+  }
+
+  .main-banner .image-container .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 20px; /* fixed left margin */
+    right: 20px;
+    transform: translateY(-50%);
+  }
+}
+
+.logo-and-sponsor {
+  /* This is the key part */
+  display: flex;
+  flex-direction: column; /* Stacks the two items vertically */
+}
+
+@media (max-width: 300px) {
+  #how-use-week {
+    font-size: small !important;
+  }
+
+  .main-banner .image-container .overlay-text h4 {
+    font-size: small !important;
+  }
+  .main-banner .image-container .overlay-text h3 {
+    font-size: small !important;
+  }
+  .main-banner .image-container .overlay-text p {
+    font-size: xx-small !important;
+  }
 }
