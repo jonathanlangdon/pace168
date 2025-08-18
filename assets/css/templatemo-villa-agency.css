@@ -2031,9 +2031,6 @@ body {
   color: #2d3192;
 }
 
-#pace-logo-link {
-}
-
 #pace-logo {
   vertical-align: center;
   text-align: center;
@@ -2048,9 +2045,9 @@ body {
   font-style: italic;
 }
 
-#logo-area {
+/* #logo-area {
   width: 165px;
-}
+} */
 
 @media (max-width: 500px) {
   #pace-logo {
@@ -2067,9 +2064,9 @@ body {
     font-style: italic;
   }
 
-  #logo-area {
+  /* #logo-area {
     width: 150px;
-  }
+  } */
 
   /* .main-banner .image-container .overlay-text {
     position: absolute;
