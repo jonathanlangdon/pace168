@@ -2094,6 +2094,7 @@ body {
   /* This is the key part */
   display: flex;
   flex-direction: column; /* Stacks the two items vertically */
+  align-items: center;
 }
 
 @media (max-width: 300px) {
@@ -2110,4 +2111,12 @@ body {
   .main-banner .image-container .overlay-text p {
     font-size: xx-small !important;
   }
+}
+
+.sponsor-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 4vh;
+  object-fit: contain;
 }
