@@ -2120,3 +2120,9 @@ body {
   max-height: 4vh;
   object-fit: contain;
 }
+
+@media (max-width: 767px) {
+  .sponsor-logo {
+    max-width: 120px;
+  }
+}
