@@ -600,6 +600,9 @@ Header Style
 
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
   position: absolute;
   top: 23px;
   width: 32px;
