@@ -145,12 +145,30 @@
                 min="0"
               />
             </div>
-            <div class="toggle-container" onclick="toggleInput()">
-              <div class="toggle-option selected" id="toggleWeekly">
+            <div
+              class="toggle-container"
+              role="group"
+              aria-label="Hours input period"
+            >
+              <button
+                type="button"
+                class="toggle-option selected"
+                id="toggleWeekly"
+                aria-pressed="true"
+                onclick="setInputMode(true)"
+              >
                 Hours per Week
-              </div>
-              <div class="toggle-option" id="toggleDaily">Hours per Day</div>
-              <div class="toggle-slider"></div>
+              </button>
+
+              <button
+                type="button"
+                class="toggle-option"
+                id="toggleDaily"
+                aria-pressed="false"
+                onclick="setInputMode(false)"
+              >
+                Hours per Day
+              </button>
             </div>
           </div>
         </div>

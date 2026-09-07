@@ -66,22 +66,17 @@ function createInitialTable() {
   updateTotalHours(totalHours);
 }
 
-function toggleInput() {
+function setInputMode(weekly) {
   const toggleWeekly = document.getElementById('toggleWeekly');
   const toggleDaily = document.getElementById('toggleDaily');
-  const toggleSlider = document.querySelector('.toggle-slider');
 
-  isWeekly = !isWeekly;
+  isWeekly = weekly;
 
-  if (isWeekly) {
-    toggleWeekly.classList.add('selected');
-    toggleDaily.classList.remove('selected');
-    toggleSlider.style.left = '0';
-  } else {
-    toggleWeekly.classList.remove('selected');
-    toggleDaily.classList.add('selected');
-    toggleSlider.style.left = '50%';
-  }
+  toggleWeekly.classList.toggle('selected', isWeekly);
+  toggleDaily.classList.toggle('selected', !isWeekly);
+
+  toggleWeekly.setAttribute('aria-pressed', isWeekly);
+  toggleDaily.setAttribute('aria-pressed', !isWeekly);
 }
 
 function addCategory() {
