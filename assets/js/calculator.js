@@ -152,7 +152,9 @@ let rowToDelete; // Variable to store the row to be deleted
 
 function deleteRow(button) {
   rowToDelete = button.parentNode.parentNode; // Store the row to be deleted
-  $('#deleteModal').modal('show'); // Show the modal
+  bootstrap.Modal.getOrCreateInstance(
+    document.getElementById('deleteModal')
+  ).show(); // Show the modal
 }
 
 function updateTotalHours(newTotalHours) {
@@ -190,11 +192,15 @@ function saveCategories() {
   }
 
   localStorage.setItem('timeCategories168', JSON.stringify(categories));
-  $('#successModal').modal('show'); // Show the success modal
+  bootstrap.Modal.getOrCreateInstance(
+    document.getElementById('successModal')
+  ).show(); // Show the success modal
 }
 
 function restoreDefaults() {
-  $('#restoreDefaultsModal').modal('show');
+  bootstrap.Modal.getOrCreateInstance(
+    document.getElementById('restoreDefaultsModal')
+  ).show();
 }
 function isSafari() {
   return (
@@ -255,7 +261,9 @@ document
     localStorage.removeItem('timeCategories168'); // Remove the saved categories from local storage
     totalHours = 0; // Reset totalHours to 0
     createInitialTable(); // Re-run createInitialTable to restore defaults
-    $('#restoreDefaultsModal').modal('hide'); // Hide the modal
+    bootstrap.Modal.getOrCreateInstance(
+      document.getElementById('restoreDefaultsModal')
+    ).hide(); // Hide the modal
   });
 
 document
@@ -268,5 +276,7 @@ document
       updateTotalHours(totalHours);
     }
     rowToDelete.remove();
-    $('#deleteModal').modal('hide'); // Hide the modal
+    bootstrap.Modal.getOrCreateInstance(
+      document.getElementById('deleteModal')
+    ).hide(); // Hide the modal
   });
