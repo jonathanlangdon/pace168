@@ -50,12 +50,12 @@ function createInitialTable() {
       hoursCell.textContent = item.hours;
       hoursCell.setAttribute('saved-hours', item.hours);
       actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
-    }
 
-    // Add onclick event to hours cell to enable editing
-    hoursCell.onclick = function () {
-      editRow(this);
-    };
+      // Only saved numeric cells should enter edit mode when clicked.
+      hoursCell.onclick = function () {
+        editRow(this);
+      };
+    }
 
     // Update total hours if item.hours is not null
     if (item.hours !== null) {
