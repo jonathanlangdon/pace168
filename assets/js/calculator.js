@@ -45,11 +45,29 @@ function createInitialTable() {
     categoryCell.textContent = item.category;
     if (item.hours === null) {
       hoursCell.innerHTML = `<input type="number" class="form-control" placeholder="Hours" min="0" onblur="saveRow(this)">`;
-      actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
+      actionCell.innerHTML = `
+  <button
+    type="button"
+    class="delete-btn"
+    onclick="deleteRow(this)"
+    aria-label="Delete category"
+  >
+    &#10006;
+  </button>
+`;
     } else {
       hoursCell.textContent = item.hours;
       hoursCell.setAttribute('saved-hours', item.hours);
-      actionCell.innerHTML = `<span class="delete-btn ml-2" onclick="deleteRow(this)">&#10006;</span>`;
+      actionCell.innerHTML = `
+  <button
+    type="button"
+    class="delete-btn"
+    onclick="deleteRow(this)"
+    aria-label="Delete category"
+  >
+    &#10006;
+  </button>
+`;
 
       // Only saved numeric cells should enter edit mode when clicked.
       hoursCell.onclick = function () {
@@ -102,9 +120,11 @@ function addCategory() {
       editRow(this);
     };
 
-    const deleteButton = document.createElement('span');
-    deleteButton.className = 'delete-btn ml-2';
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.className = 'delete-btn';
     deleteButton.innerHTML = '&#10006;';
+    deleteButton.setAttribute('aria-label', 'Delete category');
     deleteButton.onclick = function () {
       deleteRow(deleteButton);
     };
