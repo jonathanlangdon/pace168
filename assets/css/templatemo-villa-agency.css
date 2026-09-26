@@ -6,6 +6,19 @@ https://templatemo.com/tm-591-villa-agency
 
 */
 
+:root {
+  --pace-ink: #202124;
+  --pace-body: #4b4743;
+  --pace-muted: #6f675f;
+  --pace-brass: #a36f24;
+  --pace-leather: #8b4f2f;
+
+  /* Backgrounds */
+  --pace-page: #f5f2ec;
+  --pace-surface: #fffdf9;
+  --pace-header: #faf8f4;
+}
+
 html,
 body {
   margin: 0;
@@ -29,52 +42,39 @@ body {
 }
 
 .home-hero {
-  width: min(1100px, 100%);
+  width: min(1000px, 100%);
   margin: 0 auto;
   padding: 20px 24px 50px;
 }
 
 .home-question {
-  margin: 0 0 22px;
+  max-width: 650px;
+  margin: 0 auto 24px;
+  padding: 0 10px;
+
   text-align: center;
-  color: #1c2fa3;
-  font-size: clamp(18px, 3vw, 26px);
+  color: var(--pace-ink);
+
+  font-size: clamp(19px, 2.4vw, 25px);
   line-height: 1.3;
-  font-weight: 700;
+  font-weight: 600;
 }
-
-/* Photo */
-
-.home-photo {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 14px;
-  aspect-ratio: 16 / 7;
-}
-
-.home-photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-/* Quote area */
 
 .home-message {
-  width: min(760px, calc(100% - 30px));
-  margin: -35px auto 0;
+  width: min(720px, calc(100% - 30px));
+  margin: -24px auto 0;
+
   position: relative;
   z-index: 2;
+  background: var(--pace-surface);
 
-  background: #fff;
-  border-radius: 14px;
-  padding: 30px 36px;
+  border-radius: 12px;
+
+  padding: 34px 40px 38px;
 
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.06);
+    0 10px 28px rgba(72, 52, 35, 0.08),
+    0 2px 6px rgba(72, 52, 35, 0.04);
 }
 
 .franklin-quote {
@@ -82,25 +82,34 @@ body {
 }
 
 .quote-intro {
-  margin: 0 0 6px;
-  color: #666;
-  font-size: 14px;
+  margin: 0 0 12px;
+
+  color: var(--pace-muted);
+
+  font-size: 15px;
+  line-height: 1.4;
   font-weight: 500;
 }
 
 .quote-text {
-  margin: 0;
-  color: #444;
+  max-width: 520px;
+  margin: 0 auto;
+
+  color: var(--pace-body);
+
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-weight: 400;
   font-style: italic;
 }
 
 .quote-divider {
-  width: 60px;
-  height: 3px;
+  width: 46px;
+  height: 2px;
+
   margin: 24px auto;
-  background: #f35525;
+
+  background: var(--pace-brass);
   border-radius: 10px;
 }
 
@@ -109,58 +118,105 @@ body {
 }
 
 .pace-quote h1 {
-  margin: 0 0 10px;
-  color: #1c2fa3;
-  font-size: clamp(24px, 4vw, 34px);
+  margin: 0 0 14px;
+
+  color: var(--pace-leather);
+
+  font-size: clamp(23px, 3vw, 30px);
   line-height: 1.2;
+  font-weight: 700;
 }
 
 .pace-quote p {
-  margin: 0;
-  color: #1e1e1e;
-  font-size: clamp(18px, 3vw, 23px);
-  line-height: 1.5;
-  font-weight: 700;
+  max-width: 500px;
+  margin: 0 auto;
+
+  color: var(--pace-ink);
+
+  font-size: clamp(17px, 2.3vw, 21px);
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.home-photo {
+  width: min(880px, 100%);
+  margin: 0 auto;
+
+  overflow: hidden;
+  border-radius: 14px;
+
+  aspect-ratio: 16 / 8;
+}
+
+.home-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
 }
 
 @media (max-width: 767px) {
   .home-hero {
-    padding: 14px 16px 32px;
+    padding: 14px 13px 38px;
   }
 
   .home-question {
-    margin-bottom: 16px;
-    font-size: 18px;
+    max-width: 300px;
+    margin-bottom: 18px;
+
+    font-size: 19px;
+    line-height: 1.28;
+    font-weight: 600;
   }
 
   .home-photo {
     border-radius: 10px;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
   }
 
   .home-message {
     width: calc(100% - 20px);
+
     margin-top: -20px;
-    padding: 24px 20px;
-    border-radius: 10px;
+    padding: 28px 22px 32px;
+
+    border-radius: 11px;
+  }
+
+  .quote-intro {
+    margin-bottom: 11px;
+    font-size: 14px;
   }
 
   .quote-text {
-    font-size: 14px;
-    line-height: 1.5;
+    max-width: 240px;
+
+    font-size: 15px;
+    line-height: 1.6;
   }
 
   .quote-divider {
-    margin: 20px auto;
+    width: 42px;
+
+    margin-top: 22px;
+    margin-bottom: 22px;
   }
 
   .pace-quote h1 {
+    margin-bottom: 13px;
+
     font-size: 24px;
+    line-height: 1.2;
   }
 
   .pace-quote p {
+    max-width: 245px;
+
     font-size: 18px;
-    line-height: 1.45;
+    line-height: 1.5;
+    font-weight: 600;
   }
 }
 
@@ -634,7 +690,7 @@ Header Style
 
 .header-area {
   position: relative;
-  background-color: #fff;
+  background-color: var(--pace-header);
   height: 100px;
   z-index: 100;
   -webkit-transition: all 0.5s ease 0s;
@@ -2047,6 +2103,7 @@ Responsive Style
 
 body {
   overflow-x: hidden;
+  background-color: var(--pace-page);
 }
 
 @media (max-width: 767px) {
