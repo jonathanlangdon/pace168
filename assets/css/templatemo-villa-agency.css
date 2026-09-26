@@ -13,16 +13,156 @@ body {
   overscroll-behavior-y: none;
 }
 
-body {
-  min-height: 100dvh;
+/* =========================================================
+   Homepage
+   ========================================================= */
+
+.home-page {
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
 
-footer {
-  margin-top: auto;
+.home-main {
+  width: 100%;
+  flex: 1 0 auto;
 }
 
+.home-hero {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 20px 24px 50px;
+}
+
+.home-question {
+  margin: 0 0 22px;
+  text-align: center;
+  color: #1c2fa3;
+  font-size: clamp(18px, 3vw, 26px);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+/* Photo */
+
+.home-photo {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  aspect-ratio: 16 / 7;
+}
+
+.home-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Quote area */
+
+.home-message {
+  width: min(760px, calc(100% - 30px));
+  margin: -35px auto 0;
+  position: relative;
+  z-index: 2;
+
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px 36px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.franklin-quote {
+  text-align: center;
+}
+
+.quote-intro {
+  margin: 0 0 6px;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.quote-text {
+  margin: 0;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.quote-divider {
+  width: 60px;
+  height: 3px;
+  margin: 24px auto;
+  background: #f35525;
+  border-radius: 10px;
+}
+
+.pace-quote {
+  text-align: center;
+}
+
+.pace-quote h1 {
+  margin: 0 0 10px;
+  color: #1c2fa3;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.2;
+}
+
+.pace-quote p {
+  margin: 0;
+  color: #1e1e1e;
+  font-size: clamp(18px, 3vw, 23px);
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    padding: 14px 16px 32px;
+  }
+
+  .home-question {
+    margin-bottom: 16px;
+    font-size: 18px;
+  }
+
+  .home-photo {
+    border-radius: 10px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-message {
+    width: calc(100% - 20px);
+    margin-top: -20px;
+    padding: 24px 20px;
+    border-radius: 10px;
+  }
+
+  .quote-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .quote-divider {
+    margin: 20px auto;
+  }
+
+  .pace-quote h1 {
+    font-size: 24px;
+  }
+
+  .pace-quote p {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+}
 
 /* ---------------------------------------------
 Table of contents
@@ -2146,4 +2286,17 @@ body {
   .sponsor-logo {
     max-width: 120px;
   }
+}
+
+/* Stabilize the one-screen homepage on mobile browsers */
+.home-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page footer {
+  position: static;
+  margin-top: 0;
+  flex-shrink: 0;
 }
