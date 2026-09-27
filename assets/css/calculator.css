@@ -1,10 +1,25 @@
 .sticky-header {
   position: sticky;
   top: 0;
-  background-color: white;
-  z-index: 99;
+  background-color: var(--pace-surface);
+  z-index: 30;
   padding: 1rem 0;
   text-align: center;
+}
+
+/* Sticky table column headers */
+#categoryTable thead th {
+  position: sticky;
+  top: var(--calculator-summary-height, 0px);
+  z-index: 25;
+
+  background-color: var(--pace-surface);
+  color: var(--pace-ink);
+
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+
+  border-bottom: 2px solid
+    color-mix(in srgb, var(--pace-brass) 35%, transparent);
 }
 
 .box2.sticky {

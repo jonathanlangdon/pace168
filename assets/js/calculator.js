@@ -335,3 +335,30 @@ document
       recalculateTotalHours();
     }
   });
+
+function updateStickyTableHeaderOffset() {
+  const summaryHeader = document.querySelector('.sticky-header');
+
+  if (!summaryHeader) {
+    return;
+  }
+
+  document.documentElement.style.setProperty(
+    '--calculator-summary-height',
+    `${summaryHeader.getBoundingClientRect().height}px`
+  );
+}
+
+const summaryHeader = document.querySelector('.sticky-header');
+
+if (summaryHeader) {
+  updateStickyTableHeaderOffset();
+
+  window.addEventListener('resize', updateStickyTableHeaderOffset);
+
+  const summaryResizeObserver = new ResizeObserver(
+    updateStickyTableHeaderOffset
+  );
+
+  summaryResizeObserver.observe(summaryHeader);
+}
