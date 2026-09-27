@@ -19,6 +19,29 @@ https://templatemo.com/tm-591-villa-agency
   --pace-header: #faf8f4;
 }
 
+html {
+  color-scheme: only light;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  :root {
+    --pace-ink: #fffdf8;
+    --pace-body: #f7f2ea;
+    --pace-muted: #e4dbd0;
+
+    --pace-brass: #edbd67;
+    --pace-leather: #e59a74;
+
+    --pace-page: #171717;
+    --pace-surface: #242321;
+    --pace-header: #1d1d1c;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -142,6 +165,7 @@ body {
 
 .home-photo {
   width: min(880px, 100%);
+  max-height: 400px;
   margin: 0 auto;
 
   overflow: hidden;
@@ -442,7 +466,7 @@ body {
 
 .icon-button a {
   display: inline-block;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   color: #fff;
   font-size: 14px;
   font-weight: 400;
@@ -475,7 +499,7 @@ body {
 
 .main-button a {
   display: inline-block;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -795,7 +819,7 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child:hover a {
-  background-color: #1e1e1e;
+  background-color: currentColor;
 }
 
 .header-area .main-nav .nav li:last-child:hover a i {
@@ -827,6 +851,8 @@ Header Style
   z-index: 99;
   right: 20px;
   display: none;
+
+  color: var(--pace-ink);
 }
 
 .background-header .main-nav .menu-trigger {
@@ -844,7 +870,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   display: block;
   position: absolute;
   width: 30px;
@@ -858,7 +884,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   display: block;
   position: absolute;
   width: 30px;
@@ -905,11 +931,11 @@ Header Style
   -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
   -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
   transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #1e1e1e;
+  background-color: currentColor;
 }
 
 .background-header .main-nav .menu-trigger.active span:before {
-  background-color: #1e1e1e;
+  background-color: currentColor;
 }
 
 .header-area .main-nav .menu-trigger.active span:after {
@@ -917,11 +943,11 @@ Header Style
   -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #1e1e1e;
+  background-color: currentColor;
 }
 
 .background-header .main-nav .menu-trigger.active span:after {
-  background-color: #1e1e1e;
+  background-color: currentColor;
 }
 
 .visible {
@@ -1644,7 +1670,7 @@ Contact Style
 }
 
 .contact-content #contact-form button {
-  background-color: #1e1e1e;
+  background-color: currentColor;
   height: 44px;
   border-radius: 22px;
   padding: 0px 20px;
@@ -1667,7 +1693,7 @@ Footer Style
 
 footer {
   margin-top: 0;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   height: 50px; /* use fixed height to match min-height */
   position: fixed;
   bottom: 0;
@@ -1805,7 +1831,7 @@ Properties Style
   text-transform: capitalize;
   font-weight: 500;
   color: #fff;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   padding: 12px 25px;
   border-radius: 5px;
   transition: all 0.3s;
@@ -1842,7 +1868,7 @@ Properties Style
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background-color: #1e1e1e;
+  background-color: currentColor;
   color: #fff;
   font-size: 15px;
   font-weight: 600;
@@ -2049,7 +2075,7 @@ Contact Page Style
 }
 
 .contact-page #contact-form button {
-  background-color: #1e1e1e;
+  background-color: currentColor;
   height: 44px;
   border-radius: 22px;
   padding: 0px 20px;
@@ -2139,9 +2165,6 @@ body {
   }
   .properties ul.properties-filter li {
     margin: 5px;
-  }
-  .header-area .main-nav .nav li:last-child {
-    color: black;
   }
 }
 
@@ -2358,4 +2381,123 @@ body {
   position: static;
   margin-top: 0;
   flex-shrink: 0;
+}
+
+/* =========================================================
+   Dark mode
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--pace-page);
+    color: var(--pace-body);
+  }
+
+  /* Header */
+  .header-area,
+  .background-header {
+    background-color: var(--pace-header) !important;
+  }
+
+  /* Desktop navigation */
+  .header-area .main-nav .nav li a,
+  .background-header .main-nav .nav li a {
+    color: #f7f5f1;
+  }
+
+  /* Logo text */
+  #pace-logo,
+  .header-area .main-nav .logo-text {
+    color: #ffffff;
+  }
+
+  /* Hamburger */
+  .header-area .main-nav .menu-trigger span,
+  .header-area .main-nav .menu-trigger span::before,
+  .header-area .main-nav .menu-trigger span::after {
+    background-color: #ffffff;
+  }
+
+  .header-area .main-nav .menu-trigger.active span {
+    background-color: transparent;
+  }
+
+  .header-area .main-nav .menu-trigger.active span::before,
+  .header-area .main-nav .menu-trigger.active span::after,
+  .background-header .main-nav .menu-trigger.active span::before,
+  .background-header .main-nav .menu-trigger.active span::after {
+    background-color: #ffffff;
+  }
+
+  /* Homepage */
+  .home-message {
+    background-color: var(--pace-surface);
+  }
+
+  .home-question,
+  .pace-quote p {
+    color: var(--pace-ink);
+  }
+
+  .quote-text {
+    color: var(--pace-body);
+  }
+
+  .quote-intro {
+    color: var(--pace-muted);
+  }
+
+  .pace-quote h1 {
+    color: var(--pace-leather);
+  }
+
+  /* General text */
+  p {
+    color: var(--pace-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--pace-ink);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 767px) {
+  .background-header .main-nav .nav,
+  .header-area .main-nav .nav {
+    background-color: #242321;
+  }
+
+  .background-header .main-nav .nav li,
+  .header-area .main-nav .nav li {
+    background-color: #242321;
+    border-top-color: #3b3936;
+  }
+
+  .background-header .main-nav .nav li a,
+  .header-area .main-nav .nav li a {
+    background-color: #242321;
+    color: #ffffff;
+  }
+
+  .background-header .main-nav .nav li a:hover,
+  .header-area .main-nav .nav li a:hover,
+  .header-area.header-sticky .nav li a.active {
+    background-color: #302e2b;
+    color: var(--pace-brass) !important;
+  }
+
+  /* Calculator button should not turn white */
+  .header-area .main-nav .nav li:last-child a {
+    background-color: #302e2b !important;
+    color: #ffffff !important;
+  }
+
+  .header-area .main-nav .nav li:last-child a i {
+    color: #ffffff;
+  }
 }
