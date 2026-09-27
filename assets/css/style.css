@@ -202,7 +202,6 @@ body {
     max-width: 300px;
     margin-bottom: 18px;
 
-    font-size: 1rem;
     line-height: 1.28;
     font-weight: 600;
   }
@@ -2391,14 +2390,14 @@ body {
   align-items: center;
 }
 
-.sponsor-link {
+.header-brand-link {
   display: block;
   width: 220px;
   max-width: 100%;
   line-height: 0;
 }
 
-.sponsor-logo {
+.header-brand-logo {
   display: block;
   width: 100%;
   height: auto;
@@ -2407,7 +2406,7 @@ body {
 }
 
 @media (max-width: 767px) {
-  .sponsor-link {
+  .header-brand-link {
     width: 120px;
   }
 }
