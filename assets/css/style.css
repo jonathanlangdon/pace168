@@ -2561,3 +2561,46 @@ body {
 .background-header .main-nav .nav li:last-child .nav-icon {
   color: currentColor;
 }
+
+@media (max-width: 767px) {
+  .header-area .main-nav .nav li:last-child a,
+  .background-header .main-nav .nav li:last-child a,
+  .header-area.header-sticky .nav li:last-child a.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+
+    width: 100%;
+    margin: 0;
+
+    background-color: var(--pace-surface) !important;
+    color: var(--pace-ink) !important;
+
+    font-weight: 400 !important;
+    text-transform: none !important;
+
+    border-radius: 0 !important;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .header-area .main-nav .nav li:last-child a:hover,
+  .background-header .main-nav .nav li:last-child a:hover,
+  .header-area.header-sticky .nav li:last-child a.active:hover {
+    background-color: var(--pace-surface) !important;
+    color: var(--pace-leather) !important;
+  }
+
+  .header-area .main-nav .nav li:last-child .nav-icon,
+  .background-header .main-nav .nav li:last-child .nav-icon {
+    color: currentColor;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-icon {
+    display: none;
+  }
+}
