@@ -161,6 +161,7 @@ function addCategory() {
     actionCell.appendChild(deleteButton);
 
     recalculateTotalHours();
+    autoSaveCategories();
 
     document.getElementById('categoryInput').value = '';
     document.getElementById('hoursInput').value = '';
@@ -181,6 +182,7 @@ function saveRow(inputField) {
   }
 
   recalculateTotalHours();
+  autoSaveCategories();
 }
 
 function editRow(cell) {
@@ -221,27 +223,6 @@ function updateTotalHours(newTotalHours) {
 
   // Turn progress bar red when over 168
   fillMeter.classList.toggle('over-limit', newTotalHours > maxHours);
-}
-
-function saveCategories() {
-  const tableBody = document.querySelector('#categoryTable tbody');
-  const rows = tableBody.rows;
-  const categories = [];
-
-  for (let i = 0; i < rows.length; i++) {
-    const category = rows[i].cells[0].textContent;
-    const hours = parseFloat(rows[i].cells[1].getAttribute('saved-hours'));
-
-    categories.push({
-      category: category,
-      hours: isNaN(hours) ? null : hours
-    });
-  }
-
-  localStorage.setItem('timeCategories168', JSON.stringify(categories));
-  bootstrap.Modal.getOrCreateInstance(
-    document.getElementById('successModal')
-  ).show(); // Show the success modal
 }
 
 function restoreDefaults() {
@@ -300,17 +281,63 @@ function downloadPDF() {
   }
 }
 
+function getRowHoursForStorage(row) {
+  const hoursCell = row.cells[1];
+  const input = hoursCell.querySelector('input');
+
+  // Row currently has an editable input
+  if (input) {
+    const rawValue = input.value.trim();
+
+    if (rawValue === '') {
+      return null;
+    }
+
+    const value = parseFloat(rawValue);
+
+    return Number.isFinite(value) && value >= 0 ? value : null;
+  }
+
+  // Row has already been saved/committed
+  const savedValue = hoursCell.getAttribute('saved-hours');
+
+  if (savedValue === null || savedValue === '') {
+    return null;
+  }
+
+  const value = parseFloat(savedValue);
+
+  return Number.isFinite(value) && value >= 0 ? value : null;
+}
+
+function autoSaveCategories() {
+  const rows = document.querySelectorAll('#categoryTable tbody tr');
+
+  const categories = Array.from(rows).map(row => ({
+    category: row.cells[0].textContent.trim(),
+    hours: getRowHoursForStorage(row)
+  }));
+
+  localStorage.setItem('timeCategories168', JSON.stringify(categories));
+}
+
 // Event Listeners
 
 document
   .getElementById('confirmRestoreDefaultsButton')
   .addEventListener('click', function () {
-    localStorage.removeItem('timeCategories168'); // Remove the saved categories from local storage
-    totalHours = 0; // Reset totalHours to 0
-    createInitialTable(); // Re-run createInitialTable to restore defaults
+    localStorage.removeItem('timeCategories168');
+
+    totalHours = 0;
+
+    createInitialTable();
+
+    // Store the restored default state immediately.
+    autoSaveCategories();
+
     bootstrap.Modal.getOrCreateInstance(
       document.getElementById('restoreDefaultsModal')
-    ).hide(); // Hide the modal
+    ).hide();
   });
 
 document
@@ -319,6 +346,7 @@ document
     rowToDelete.remove();
 
     recalculateTotalHours();
+    autoSaveCategories();
 
     bootstrap.Modal.getOrCreateInstance(
       document.getElementById('deleteModal')
@@ -330,6 +358,7 @@ document
   .addEventListener('input', function (event) {
     if (event.target.matches('tbody input[type="number"]')) {
       recalculateTotalHours();
+      autoSaveCategories();
     }
   });
 
