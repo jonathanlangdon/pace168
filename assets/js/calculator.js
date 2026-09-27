@@ -202,28 +202,25 @@ function updateTotalHours(newTotalHours) {
   const totalHoursElement = document.getElementById('totalHours');
   const fillMeter = document.getElementById('fillMeter');
 
-  gsap.killTweensOf(totalHoursElement);
+  // Update the displayed total
+  if (newTotalHours > maxHours) {
+    const overBy = Math.round(newTotalHours - maxHours);
 
-  gsap.to(totalHoursElement, {
-    duration: 0.4,
-    innerHTML: newTotalHours,
-    roundProps: 'innerHTML',
-    overwrite: true,
-    onUpdate: function () {
-      totalHoursElement.innerText =
-        Math.round(this.targets()[0].innerText) + '/168 Hours Used';
-    },
-    onComplete: function () {
-      totalHoursElement.innerText =
-        Math.round(newTotalHours) + '/168 Hours Used';
-    }
-  });
+    totalHoursElement.innerText = `${Math.round(newTotalHours)}/168 Hours Used — ${overBy} Over`;
+  } else {
+    totalHoursElement.innerText = `${Math.round(newTotalHours)}/168 Hours Used`;
+  }
 
+  // Turn the total text red when over 168
+  totalHoursElement.classList.toggle('over-limit', newTotalHours > maxHours);
+
+  // Update progress bar width
   const fillPercentage = Math.min((newTotalHours / maxHours) * 100, 100);
 
   fillMeter.style.width = fillPercentage + '%';
 
-  fillMeter.style.backgroundColor = newTotalHours > maxHours ? 'red' : 'green';
+  // Turn progress bar red when over 168
+  fillMeter.classList.toggle('over-limit', newTotalHours > maxHours);
 }
 
 function saveCategories() {

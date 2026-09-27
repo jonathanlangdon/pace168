@@ -30,7 +30,7 @@
 
 .meter {
   height: 20px;
-  background: #e0e0df;
+  background: color-mix(in srgb, var(--pace-muted) 22%, var(--pace-surface));
   border-radius: 25px;
   margin: 1rem 0;
   overflow: hidden;
@@ -40,7 +40,16 @@
   display: block;
   height: 100%;
   border-radius: 25px 0 0 25px;
-  background-color: green;
+
+  background-color: var(--pace-brass);
+
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.meter span.over-limit {
+  background-color: var(--pace-danger);
 }
 
 .table {
@@ -96,6 +105,14 @@
   background-color: var(--pace-leather);
   border-color: var(--pace-leather);
   color: #fffdf8;
+}
+
+#totalHours {
+  transition: color 0.2s ease;
+}
+
+#totalHours.over-limit {
+  color: var(--pace-danger);
 }
 
 .pace-btn-primary:hover,
