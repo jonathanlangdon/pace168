@@ -1,7 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-}
-
 .sticky-header {
   position: sticky;
   top: 0;
@@ -45,6 +41,85 @@ body {
   margin-bottom: 1rem;
 }
 
+/* =========================================================
+   PACE168 Calculator Buttons
+   ========================================================= */
+
+.pace-btn {
+  border-radius: 999px;
+  padding: 0.65rem 1.2rem;
+  border: 2px solid transparent;
+
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.pace-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pace-btn:active {
+  transform: translateY(0);
+}
+
+.pace-btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--pace-brass) 45%, transparent);
+  outline-offset: 3px;
+}
+
+/* Primary action:
+   Save, Add Category */
+.pace-btn-primary {
+  background-color: var(--pace-leather);
+  border-color: var(--pace-leather);
+  color: #fffdf8;
+}
+
+.pace-btn-primary:hover,
+.pace-btn-primary:focus {
+  background-color: color-mix(in srgb, var(--pace-leather) 88%, black);
+  border-color: color-mix(in srgb, var(--pace-leather) 88%, black);
+  color: #fffdf8;
+}
+
+/* Secondary action:
+   Download PDF */
+.pace-btn-secondary {
+  background-color: transparent;
+  border-color: var(--pace-brass);
+  color: var(--pace-ink);
+}
+
+.pace-btn-secondary:hover,
+.pace-btn-secondary:focus {
+  background-color: var(--pace-brass);
+  border-color: var(--pace-brass);
+  color: #fffdf8;
+}
+
+/* Destructive/reset action:
+   Restore Defaults */
+.pace-btn-danger-outline {
+  background-color: transparent;
+  border-color: var(--pace-leather);
+  color: var(--pace-leather);
+}
+
+.pace-btn-danger-outline:hover,
+.pace-btn-danger-outline:focus {
+  background-color: var(--pace-leather);
+  border-color: var(--pace-leather);
+  color: #fffdf8;
+}
+
 .input-group {
   display: flex;
   align-items: center;
@@ -77,9 +152,48 @@ body {
   cursor: pointer;
 }
 
+.toggle-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  background-color: var(--pace-surface);
+  border: 1px solid color-mix(in srgb, var(--pace-muted) 35%, transparent);
+
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+
+  margin-top: 0.5rem;
+  width: 50%;
+  min-width: 180px;
+  margin-left: 10px;
+}
+
+.toggle-option {
+  flex: 1;
+  text-align: center;
+
+  padding: 0.55rem 0.8rem;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--pace-body);
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
 .toggle-option.selected {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--pace-leather);
+  color: #fffdf8;
 }
 
 .toggle-option:focus-visible {
@@ -89,12 +203,33 @@ body {
 
 .delete-btn {
   cursor: pointer;
-  color: red;
-  background: none;
+
+  color: var(--pace-leather);
+  background: transparent;
+
   border: 0;
+  border-radius: 50%;
+
+  width: 2rem;
+  height: 2rem;
   padding: 0;
+
   font: inherit;
+  font-weight: 700;
   line-height: 1;
+
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.delete-btn:hover {
+  background-color: color-mix(in srgb, var(--pace-leather) 12%, transparent);
+}
+
+.delete-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .delete-btn:focus-visible {
