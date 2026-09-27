@@ -55,7 +55,7 @@ body {
   text-align: center;
   color: var(--pace-ink);
 
-  font-size: clamp(19px, 2.4vw, 25px);
+  font-size: clamp(1.618rem, 2.4vw, 25px);
   line-height: 1.3;
   font-weight: 600;
 }
@@ -86,28 +86,30 @@ body {
 
   color: var(--pace-muted);
 
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: 2.6rem;
+  line-height: 1rem;
   font-weight: 500;
 }
 
 .quote-text {
   max-width: 520px;
   margin: 0 auto;
-
+  font-size: 1rem;
   color: var(--pace-body);
+  font-weight: 500;
+}
 
-  font-size: 16px;
-  line-height: 1.65;
-  font-weight: 400;
-  font-style: italic;
+.quote-text .italicized {
+  /* font-style: italic;  */
+  text-decoration: underline;
+  font-weight: 700;
 }
 
 .quote-divider {
   width: 46px;
   height: 2px;
 
-  margin: 24px auto;
+  margin: 0.5rem auto;
 
   background: var(--pace-brass);
   border-radius: 10px;
@@ -166,7 +168,7 @@ body {
     max-width: 300px;
     margin-bottom: 18px;
 
-    font-size: 19px;
+    font-size: 1rem;
     line-height: 1.28;
     font-weight: 600;
   }
@@ -187,13 +189,13 @@ body {
 
   .quote-intro {
     margin-bottom: 11px;
-    font-size: 14px;
+    font-size: 1.618rem;
   }
 
   .quote-text {
     max-width: 240px;
 
-    font-size: 15px;
+    font-size: 1rem;
     line-height: 1.6;
   }
 
