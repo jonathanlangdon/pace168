@@ -340,3 +340,67 @@
     border-radius: 15px 0 0 15px;
   }
 }
+
+/* =========================================================
+   Calculator dark mode
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  #categoryTable {
+    --bs-table-color: var(--pace-body);
+    --bs-table-bg: transparent;
+
+    --bs-table-striped-color: var(--pace-body);
+    --bs-table-striped-bg: color-mix(in srgb, var(--pace-surface) 82%, white);
+
+    --bs-table-border-color: color-mix(
+      in srgb,
+      var(--pace-muted) 35%,
+      transparent
+    );
+
+    color: var(--pace-body);
+  }
+
+  #categoryTable tbody td {
+    color: var(--pace-body);
+  }
+
+  #categoryTable thead th {
+    color: var(--pace-ink);
+    background-color: var(--pace-surface);
+  }
+
+  #categoryTable .form-control,
+  #categoryInput,
+  #hoursInput {
+    background-color: #302e2b;
+    color: var(--pace-ink);
+    border-color: #514d48;
+  }
+
+  #categoryTable .form-control::placeholder,
+  #categoryInput::placeholder,
+  #hoursInput::placeholder {
+    color: var(--pace-muted);
+    opacity: 0.8;
+  }
+
+  #categoryTable .form-control:focus,
+  #categoryInput:focus,
+  #hoursInput:focus {
+    background-color: #302e2b;
+    color: var(--pace-ink);
+    border-color: var(--pace-brass);
+    box-shadow: 0 0 0 0.2rem
+      color-mix(in srgb, var(--pace-brass) 20%, transparent);
+  }
+
+  #categoryTableContainer {
+    color: var(--pace-body);
+  }
+
+  .sticky-header {
+    background-color: var(--pace-surface);
+  }
+}
