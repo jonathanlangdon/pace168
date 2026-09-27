@@ -49,8 +49,8 @@ body {
 
 .home-question {
   max-width: 650px;
-  margin: 0 auto 24px;
-  padding: 0 10px;
+  margin: 1rem auto 1rem;
+  padding: 0 0.618rem;
 
   text-align: center;
   color: var(--pace-ink);
