@@ -2,6 +2,34 @@ let totalHours = 0;
 const maxHours = 168;
 let isWeekly = true;
 
+function getRowHours(row) {
+  const hoursCell = row.cells[1];
+
+  // If the row is currently being edited, get the value
+  // directly from the input.
+  const input = hoursCell.querySelector('input');
+
+  let rawValue;
+
+  if (input) {
+    rawValue = input.value;
+  } else {
+    rawValue = hoursCell.getAttribute('saved-hours') ?? hoursCell.textContent;
+  }
+
+  const value = parseFloat(rawValue);
+
+  return Number.isFinite(value) && value >= 0 ? value : 0;
+}
+
+function recalculateTotalHours() {
+  const rows = document.querySelectorAll('#categoryTable tbody tr');
+
+  totalHours = Array.from(rows).reduce((sum, row) => sum + getRowHours(row), 0);
+
+  updateTotalHours(totalHours);
+}
+
 const defaultTableItems = [
   { category: 'Work', hours: null },
   { category: 'Sleep', hours: null },
@@ -29,6 +57,7 @@ const defaultTableItems = [
 ];
 
 function createInitialTable() {
+  totalHours = 0;
   const tableBody = document.querySelector('#categoryTable tbody');
   tableBody.innerHTML = '';
 
@@ -131,8 +160,7 @@ function addCategory() {
 
     actionCell.appendChild(deleteButton);
 
-    totalHours += hoursPerWeek;
-    updateTotalHours(totalHours);
+    recalculateTotalHours();
 
     document.getElementById('categoryInput').value = '';
     document.getElementById('hoursInput').value = '';
@@ -140,21 +168,19 @@ function addCategory() {
 }
 
 function saveRow(inputField) {
-  const row = inputField.parentNode.parentNode;
+  const row = inputField.closest('tr');
   const newHours = parseFloat(inputField.value);
 
-  if (!isNaN(newHours) && newHours >= 0) {
-    totalHours -= parseFloat(row.cells[1].getAttribute('saved-hours')) || 0;
-    row.cells[1].innerHTML = newHours;
+  if (!Number.isNaN(newHours) && newHours >= 0) {
+    row.cells[1].textContent = newHours;
     row.cells[1].setAttribute('saved-hours', newHours);
-    totalHours += newHours;
-    updateTotalHours(totalHours);
 
-    // Re-enable editing on cell click
     row.cells[1].onclick = function () {
       editRow(this);
     };
   }
+
+  recalculateTotalHours();
 }
 
 function editRow(cell) {
@@ -176,18 +202,27 @@ function updateTotalHours(newTotalHours) {
   const totalHoursElement = document.getElementById('totalHours');
   const fillMeter = document.getElementById('fillMeter');
 
+  gsap.killTweensOf(totalHoursElement);
+
   gsap.to(totalHoursElement, {
-    duration: 2,
+    duration: 0.4,
     innerHTML: newTotalHours,
     roundProps: 'innerHTML',
+    overwrite: true,
     onUpdate: function () {
       totalHoursElement.innerText =
         Math.round(this.targets()[0].innerText) + '/168 Hours Used';
+    },
+    onComplete: function () {
+      totalHoursElement.innerText =
+        Math.round(newTotalHours) + '/168 Hours Used';
     }
   });
 
   const fillPercentage = Math.min((newTotalHours / maxHours) * 100, 100);
+
   fillMeter.style.width = fillPercentage + '%';
+
   fillMeter.style.backgroundColor = newTotalHours > maxHours ? 'red' : 'green';
 }
 
@@ -284,14 +319,19 @@ document
 document
   .getElementById('confirmDeleteButton')
   .addEventListener('click', function () {
-    const hours = parseFloat(rowToDelete.cells[1].textContent);
-
-    if (!isNaN(hours) && hours > 0) {
-      totalHours -= hours;
-      updateTotalHours(totalHours);
-    }
     rowToDelete.remove();
+
+    recalculateTotalHours();
+
     bootstrap.Modal.getOrCreateInstance(
       document.getElementById('deleteModal')
-    ).hide(); // Hide the modal
+    ).hide();
+  });
+
+document
+  .getElementById('categoryTable')
+  .addEventListener('input', function (event) {
+    if (event.target.matches('tbody input[type="number"]')) {
+      recalculateTotalHours();
+    }
   });
