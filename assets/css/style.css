@@ -2621,3 +2621,7 @@ body {
     display: none;
   }
 }
+
+.presentation-fallback {
+  margin-bottom: 0.5rem;
+}
